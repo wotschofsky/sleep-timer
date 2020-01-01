@@ -105,6 +105,8 @@ const resetTimer = () => {
    el.display.circle.style.transitionDuration = '0s'
    el.display.circle.style.strokeDashoffset = 0
    el.button.innerText = 'Start'
+   isRunning = false
+   onInput()
 }
 
 el.button.addEventListener('click', () => {
