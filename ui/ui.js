@@ -44,15 +44,44 @@ const generateDisplayLabel = (secondsLeft) => {
 }
 
 
-let timeInSec
+let timeInSec, timer
+let isRunning = false
 
 el.display.circle.setAttribute('stroke-dasharray', 2 * el.display.circle.getAttribute('r') * Math.PI)
 
 
-const startTimer = () => {
-   timeInSec = parseFloat(el.inputs.hours.value || 0) * 60 * 60 + parseFloat(el.inputs.minutes.value || 0) * 60 + parseFloat(el.inputs.seconds.value || 0)
+const getTimeInSeconds = () => parseFloat(el.inputs.hours.value || 0) * 60 * 60 + parseFloat(el.inputs.minutes.value || 0) * 60 + parseFloat(el.inputs.seconds.value || 0)
 
-   el.display.circle.style.transitionDuration = '0s'
+const onInput = () => {
+   if(!isRunning) {
+      const secs = getTimeInSeconds()
+      el.display.text.innerHTML = generateDisplayLabel(secs)
+   }
+}
+
+Object.values(el.inputs).forEach((input) => {
+   input.addEventListener('input', onInput)
+})
+
+
+const clearTimer = () => {
+   clearInterval(timer)
+}
+
+const shutdownPc = () => {
+   clearTimer()
+   let shutdown = document.querySelector('.shutdownCheckbox').checked
+   if(!shutdown) {
+      exec('shutdown /h')
+   } else {
+      exec('shutdown /s')
+   }
+}
+
+const startTimer = () => {
+   isRunning = true
+   timeInSec = getTimeInSeconds()
+
    el.display.circle.style.transitionDuration = `${timeInSec.toString()}s`
    el.display.circle.classList.toggle('running')
    el.display.circle.style.strokeDashoffset = 2 * el.display.circle.getAttribute('r') * Math.PI
@@ -60,20 +89,28 @@ const startTimer = () => {
 
    let timeLeft = timeInSec
    el.display.text.innerHTML = generateDisplayLabel(timeLeft)
-   setInterval(() => {
+   timer = setInterval(() => {
       timeLeft--
       el.display.text.innerHTML = generateDisplayLabel(timeLeft)
-   }, 1000)
 
-   setTimeout(() => {
-      let shutdown = document.querySelector('.shutdownCheckbox').checked
-      if(!shutdown) {
-         exec('shutdown /h')
-      } else {
-         exec('shutdown /s')
+      if(timeLeft === 0) {
+         shutdownPc()
       }
-      // app.exit()
-   }, timeInSec * 1000)
+   }, 1000)
 }
 
-el.button.addEventListener('click', startTimer)
+const resetTimer = () => {
+   clearTimer()
+   el.display.circle.classList.toggle('running')
+   el.display.circle.style.transitionDuration = '0s'
+   el.display.circle.style.strokeDashoffset = 0
+   el.button.innerText = 'Start'
+}
+
+el.button.addEventListener('click', () => {
+   if(!isRunning) {
+      startTimer()
+   } else {
+      resetTimer()
+   }
+})
