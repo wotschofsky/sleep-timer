@@ -1,0 +1,22 @@
+{
+   "name": "sleep-timer",
+   "description": "A tool that automatically changes your PCs power state after a set amount of time",
+   "version": "1.0.0",
+   "author": {
+      "name": "Felix Wotschofsky",
+      "url": "https://felisk.io"
+   },
+   "main": "app.js",
+   "license": "MIT",
+   "scripts": {
+      "start": "electron .",
+      "build": "electron-builder build -wl -c.extraMetadata.name=\"Sleep Timer\""
+   },
+   "dependencies": {
+      "electron-titlebar-windows": "^3.0.0"
+   },
+   "devDependencies": {
+      "electron": "^3.0.12",
+      "electron-builder": "^21.2.0"
+   }
+}
