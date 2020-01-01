@@ -47,7 +47,9 @@ const generateDisplayLabel = (secondsLeft) => {
 let timeInSec
 
 el.display.circle.setAttribute('stroke-dasharray', 2 * el.display.circle.getAttribute('r') * Math.PI)
-el.button.addEventListener('click', () => {
+
+
+const startTimer = () => {
    timeInSec = parseFloat(el.inputs.hours.value || 0) * 60 * 60 + parseFloat(el.inputs.minutes.value || 0) * 60 + parseFloat(el.inputs.seconds.value || 0)
 
    el.display.circle.style.transitionDuration = '0s'
@@ -72,4 +74,6 @@ el.button.addEventListener('click', () => {
       }
       // app.exit()
    }, timeInSec * 1000)
-})
+}
+
+el.button.addEventListener('click', startTimer)
