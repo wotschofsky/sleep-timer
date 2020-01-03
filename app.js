@@ -1,5 +1,7 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, nativeImage } = require('electron')
 
+
+const icon = nativeImage.createFromPath('./assets/icon.png')
 
 app.on('ready', () => {
    let window = new BrowserWindow({
@@ -10,6 +12,7 @@ app.on('ready', () => {
       width: 250 * 1,
       height: 380 * 1,
       title: 'Sleep Timer',
+      icon: icon,
       backgroundColor: '#292929',
       webPreferences: {
          nodeIntegration: true
