@@ -1,7 +1,7 @@
 {
    "name": "sleep-timer",
    "description": "A tool that automatically changes your PC's power state after a set amount of time",
-   "version": "1.0.0",
+   "version": "1.0.1",
    "author": {
       "name": "Felix Wotschofsky",
       "url": "https://felisk.io"
