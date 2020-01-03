@@ -2,3 +2,4 @@ node_modules
 dist/
 ui/styles.css*
 start.bat
+yarn-error.log
