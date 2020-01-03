@@ -1,3 +1,5 @@
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/feliskio/sleep-timer)](https://github.com/feliskio/sleep-timer/releases)
+
 # Sleep Timer
 
 A tool that automatically changes your PC's power state after a set amount of time"
