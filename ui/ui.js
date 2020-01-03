@@ -50,7 +50,9 @@ let isRunning = false
 el.display.circle.setAttribute('stroke-dasharray', 2 * el.display.circle.getAttribute('r') * Math.PI)
 
 
-const getTimeInSeconds = () => parseFloat(el.inputs.hours.value || 0) * 60 * 60 + parseFloat(el.inputs.minutes.value || 0) * 60 + parseFloat(el.inputs.seconds.value || 0)
+const getTimeInSeconds = () => Math.abs(parseFloat(el.inputs.hours.value || 0)) * 3600 +
+                               Math.abs(parseFloat(el.inputs.minutes.value || 0)) * 60 +
+                               Math.abs(parseFloat(el.inputs.seconds.value || 0))
 
 const onInput = () => {
    if(!isRunning) {
