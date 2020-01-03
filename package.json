@@ -16,7 +16,7 @@
       "electron-titlebar-windows": "^3.0.0"
    },
    "devDependencies": {
-      "electron": "^3.0.12",
+      "electron": "^7.1.7",
       "electron-builder": "^21.2.0"
    }
 }

@@ -10,7 +10,10 @@ app.on('ready', () => {
       width: 250 * 1,
       height: 380 * 1,
       title: 'Sleep Timer',
-      backgroundColor: '#292929'
+      backgroundColor: '#292929',
+      webPreferences: {
+         nodeIntegration: true
+      }
    })
    window.show()
    window.loadFile('./ui/index.html')
