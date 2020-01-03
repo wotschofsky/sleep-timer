@@ -9,6 +9,8 @@
    "main": "app.js",
    "license": "MIT",
    "scripts": {
+      "watch-scss": "node-sass ui/styles.scss --output=\"ui/\" --watch",
+      "build-scss": "node-sass ui/styles.scss --output=\"ui/\" --output-style=compressed",
       "start": "electron .",
       "build": "electron-builder build -wl -c.extraMetadata.name=\"Sleep Timer\""
    },
@@ -17,6 +19,7 @@
    },
    "devDependencies": {
       "electron": "^7.1.7",
-      "electron-builder": "^21.2.0"
+      "electron-builder": "^21.2.0",
+      "node-sass": "^4.13.0"
    }
 }
