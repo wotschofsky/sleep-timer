@@ -1,2 +1,8 @@
-productName: "Sleep Timer"
-icon: "assets/icon.png"
+productName: Sleep Timer
+icon: assets/icon.png
+
+directories:
+   buildResources: assets
+
+win:
+   icon: assets/icon.png
