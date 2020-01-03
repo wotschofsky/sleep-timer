@@ -79,8 +79,10 @@ const shutdownPc = () => {
 }
 
 const startTimer = () => {
-   isRunning = true
    timeInSec = getTimeInSeconds()
+   if(timeInSec === 0) return
+
+   isRunning = true
 
    el.display.circle.style.transitionDuration = `${timeInSec.toString()}s`
    el.display.circle.classList.toggle('running')
