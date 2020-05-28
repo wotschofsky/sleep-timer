@@ -18,8 +18,8 @@
       "electron-titlebar-windows": "^3.0.0"
    },
    "devDependencies": {
-      "electron": "^7.1.7",
-      "electron-builder": "^21.2.0",
+      "electron": "^9.0.0",
+      "electron-builder": "^22.7.0",
       "node-sass": "^4.13.0"
    }
 }
