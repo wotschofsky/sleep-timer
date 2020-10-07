@@ -60,7 +60,18 @@ svg {
 
 .setup {
    input {
-      width: 2rem;
+      width: 2.5rem;
+
+      border: none;
+      outline: none;
+      border-bottom: 2px solid $white;
+      background: transparent;
+      color: $white;
+      font-weight: bold;
+
+      &:focus {
+         border-bottom-width: 2px;
+      }
    }
 }
 
