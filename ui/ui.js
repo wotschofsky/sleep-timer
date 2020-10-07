@@ -54,7 +54,14 @@ const getTimeInSeconds = () => Math.abs(parseFloat(el.inputs.hours.value || 0)) 
                                Math.abs(parseFloat(el.inputs.minutes.value || 0)) * 60 +
                                Math.abs(parseFloat(el.inputs.seconds.value || 0))
 
-const onInput = () => {
+const onInput = (event) => {
+   const parsedValue = parseFloat(event.target.value)
+   if (parsedValue < 0) {
+      event.target.value = 0
+   } else if ((event.target === el.inputs.seconds || event.target === el.inputs.minutes) && parsedValue > 59) {
+      event.target.value = 59
+   }
+
    if(!isRunning) {
       const secs = getTimeInSeconds()
       el.display.text.textContent = generateDisplayLabel(secs)
