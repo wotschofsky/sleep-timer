@@ -57,7 +57,7 @@ const getTimeInSeconds = () => Math.abs(parseFloat(el.inputs.hours.value || 0)) 
 const onInput = () => {
    if(!isRunning) {
       const secs = getTimeInSeconds()
-      el.display.text.innerHTML = generateDisplayLabel(secs)
+      el.display.text.textContent = generateDisplayLabel(secs)
    }
 }
 
@@ -89,13 +89,13 @@ const startTimer = () => {
    el.display.circle.style.transitionDuration = `${timeInSec.toString()}s`
    el.display.circle.classList.toggle('running')
    el.display.circle.style.strokeDashoffset = 2 * el.display.circle.getAttribute('r') * Math.PI
-   el.button.innerText = 'Cancel'
+   el.button.textContent = 'Cancel'
 
    let timeLeft = timeInSec
-   el.display.text.innerHTML = generateDisplayLabel(timeLeft)
+   el.display.text.textContent = generateDisplayLabel(timeLeft)
    timer = setInterval(() => {
       timeLeft--
-      el.display.text.innerHTML = generateDisplayLabel(timeLeft)
+      el.display.text.textContent = generateDisplayLabel(timeLeft)
 
       if(timeLeft === 0) {
          shutdownPc()
@@ -108,7 +108,7 @@ const resetTimer = () => {
    el.display.circle.classList.toggle('running')
    el.display.circle.style.transitionDuration = '0s'
    el.display.circle.style.strokeDashoffset = 0
-   el.button.innerText = 'Start'
+   el.button.textContent = 'Start'
    isRunning = false
    onInput()
 }
