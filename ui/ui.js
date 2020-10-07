@@ -1,6 +1,7 @@
 const { remote } = require('electron'),
       { app } = remote,
       { exec } = require('child_process'),
+      os = require('os'),
       ElectronTitlebarWindows = require('electron-titlebar-windows')
 
 const el = {
@@ -21,14 +22,18 @@ const el = {
    }
 }
 
-const titlebar = new ElectronTitlebarWindows({
-   backgroundColor: '#242424'
-})
+if (os.platform() !== 'darwin') {
+   const titlebar = new ElectronTitlebarWindows({
+      backgroundColor: '#242424'
+   })
 
-titlebar.appendTo(el.titlebar)
-titlebar.on('minimize', () => remote.BrowserWindow.getFocusedWindow().minimize())
-titlebar.on('maximize', () => remote.BrowserWindow.getFocusedWindow().maximize())
-titlebar.on('close', app.quit)
+   titlebar.appendTo(el.titlebar)
+   titlebar.on('minimize', () => remote.BrowserWindow.getFocusedWindow().minimize())
+   titlebar.on('maximize', () => remote.BrowserWindow.getFocusedWindow().maximize())
+   titlebar.on('close', app.quit)
+} else {
+   el.titlebar.classList.add('darwin')
+}
 
 
 const generateDisplayLabel = (secondsLeft) => {

@@ -16,7 +16,10 @@ app.on('ready', () => {
       backgroundColor: '#292929',
       webPreferences: {
          nodeIntegration: true
-      }
+      },
+      fullscreenable: false,
+      maximizable: false,
+      titleBarStyle: 'hidden'
    })
    window.show()
    window.loadFile('./ui/index.html')
