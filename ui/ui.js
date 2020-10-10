@@ -84,13 +84,21 @@ const clearTimer = () => {
    clearInterval(timer)
 }
 
+const getSleepCommand = () => {
+   return 'shutdown -h'
+}
+
+const getShutdownCommand = () => {
+   return 'shutdown -s -t 00'
+}
+
 const shutdownPc = () => {
    resetTimer()
    let shutdown = document.querySelector('.shutdownCheckbox').checked
    if(!shutdown) {
-      exec('shutdown -h')
+      exec(getSleepCommand())
    } else {
-      exec('shutdown -s -t 00')
+      exec(getShutdownCommand())
    }
 }
 
