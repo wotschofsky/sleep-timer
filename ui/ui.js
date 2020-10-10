@@ -88,9 +88,9 @@ const shutdownPc = () => {
    resetTimer()
    let shutdown = document.querySelector('.shutdownCheckbox').checked
    if(!shutdown) {
-      exec('shutdown /h')
+      exec('shutdown -h')
    } else {
-      exec('shutdown /s')
+      exec('shutdown -s -t 00')
    }
 }
 
