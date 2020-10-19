@@ -84,14 +84,31 @@ const clearTimer = () => {
    clearInterval(timer)
 }
 
+const getShutdownCommand = (shutdown) => {
+   const platform = os.platform()
+
+   switch (platform) {
+      case 'win32':
+         if(shutdown) {
+            return 'shutdown /s'
+         }
+         return 'shutdown /h'
+      case 'darwin':
+         if (shutdown) {
+            return `osascript -e 'tell app "System Events" to shut down'`
+         }
+         return 'pmset sleepnow'
+      default:
+         return 'shutdown now'
+   }
+}
+
 const shutdownPc = () => {
    resetTimer()
-   let shutdown = document.querySelector('.shutdownCheckbox').checked
-   if(!shutdown) {
-      exec('shutdown /h')
-   } else {
-      exec('shutdown /s')
-   }
+
+   const shutdown = document.querySelector('.shutdownCheckbox').checked
+   const command = getShutdownCommand(shutdown)
+   exec(command)
 }
 
 const startTimer = () => {
