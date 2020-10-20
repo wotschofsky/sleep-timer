@@ -1,5 +1,6 @@
-node_modules
+.DS_Store
 dist/
-ui/styles.css*
+node_modules
 start.bat
+ui/styles.css*
 yarn-error.log
