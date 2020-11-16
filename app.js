@@ -1,7 +1,7 @@
 const { app, BrowserWindow, nativeImage } = require('electron')
 
 
-const icon = nativeImage.createFromPath('./assets/icon.png')
+const icon = nativeImage.createFromPath('./build/icon.png')
 
 app.on('ready', () => {
    let window = new BrowserWindow({
@@ -24,3 +24,5 @@ app.on('ready', () => {
    window.show()
    window.loadFile('./ui/index.html')
 })
+
+app.dock.setIcon(icon)
