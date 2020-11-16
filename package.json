@@ -9,10 +9,12 @@
    "main": "app.js",
    "license": "MIT",
    "scripts": {
+      "postinstall": "electron-builder install-app-deps",
       "watch-scss": "node-sass ui/styles.scss --output=\"ui/\" --watch",
       "build-scss": "node-sass ui/styles.scss --output=\"ui/\" --output-style=compressed",
       "start": "electron .",
-      "build": "electron-builder build -wl -c.extraMetadata.name=\"Sleep Timer\""
+      "build-win": "electron-builder build --win",
+      "build-mac": "electron-builder build --mac"
    },
    "dependencies": {
       "electron-titlebar-windows": "^3.0.0"
