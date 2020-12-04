@@ -1,4 +1,5 @@
-const { app, BrowserWindow, nativeImage } = require('electron')
+const { app, BrowserWindow, nativeImage } = require('electron'),
+      os = require('os')
 
 
 const icon = nativeImage.createFromPath('./build/icon.png')
@@ -25,4 +26,6 @@ app.on('ready', () => {
    window.loadFile('./ui/index.html')
 })
 
-app.dock.setIcon(icon)
+if (os.platform() === 'darwin') {
+   app.dock.setIcon(icon)
+}
