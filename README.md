@@ -17,4 +17,5 @@ Technologies used:
 
 ## Screenshots
 
-![Screenshot of tool](https://github.com/feliskio/sleep-timer/raw/master/screenshots/running.png)
+![Screenshot of tool running on Windows](./screenshots/win.png)
+![Screenshot of tool running on macOS](./screenshots/mac.png)
