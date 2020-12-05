@@ -20,7 +20,7 @@
       "electron-titlebar-windows": "^3.0.0"
    },
    "devDependencies": {
-      "electron": "^9.0.0",
+      "electron": "^11.0.3",
       "electron-builder": "^22.9.1",
       "node-sass": "^5.0.0"
    }

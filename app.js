@@ -1,4 +1,4 @@
-const { app, BrowserWindow, nativeImage } = require('electron'),
+const { app, BrowserWindow, nativeImage, ipcMain: ipc } = require('electron'),
       os = require('os')
 
 
@@ -24,6 +24,9 @@ app.on('ready', () => {
    })
    window.show()
    window.loadFile('./ui/index.html')
+
+   ipc.on('minimize', () => window.minimize())
+   ipc.on('quit', () => app.quit())
 })
 
 if (os.platform() === 'darwin') {

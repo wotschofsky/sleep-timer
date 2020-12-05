@@ -1,5 +1,4 @@
-const { remote } = require('electron'),
-      { app } = remote,
+const { ipcRenderer: ipc } = require('electron'),
       { exec } = require('child_process'),
       os = require('os'),
       ElectronTitlebarWindows = require('electron-titlebar-windows')
@@ -28,9 +27,8 @@ if (os.platform() !== 'darwin') {
    })
 
    titlebar.appendTo(el.titlebar)
-   titlebar.on('minimize', () => remote.BrowserWindow.getFocusedWindow().minimize())
-   titlebar.on('maximize', () => remote.BrowserWindow.getFocusedWindow().maximize())
-   titlebar.on('close', app.quit)
+   titlebar.on('minimize', () => ipc.send('minimize'))
+   titlebar.on('close', () => ipc.send('quit'))
 } else {
    el.titlebar.classList.add('darwin')
 }
