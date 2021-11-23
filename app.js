@@ -17,7 +17,8 @@ app.on('ready', () => {
       icon: icon,
       backgroundColor: '#292929',
       webPreferences: {
-         nodeIntegration: true
+         nodeIntegration: true,
+         contextIsolation: false
       },
       fullscreenable: false,
       maximizable: false,
