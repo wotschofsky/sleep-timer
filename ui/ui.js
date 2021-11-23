@@ -1,7 +1,6 @@
-const { ipcRenderer: ipc } = require('electron'),
-      { exec } = require('child_process'),
-      os = require('os'),
-      ElectronTitlebarWindows = require('electron-titlebar-windows')
+const { ipcRenderer: ipc } = require('electron')
+const ElectronTitlebarWindows = require('electron-titlebar-windows')
+const os = require('os')
 
 const el = {
    button: document.querySelector('button'),
@@ -82,31 +81,15 @@ const clearTimer = () => {
    clearInterval(timer)
 }
 
-const getShutdownCommand = (shutdown) => {
-   const platform = os.platform()
-
-   switch (platform) {
-      case 'win32':
-         if(shutdown) {
-            return 'shutdown /s'
-         }
-         return 'shutdown /h'
-      case 'darwin':
-         if (shutdown) {
-            return `osascript -e 'tell app "System Events" to shut down'`
-         }
-         return 'pmset sleepnow'
-      default:
-         return 'shutdown now'
-   }
-}
-
 const shutdownPc = () => {
    resetTimer()
 
    const shutdown = document.querySelector('.shutdownCheckbox').checked
-   const command = getShutdownCommand(shutdown)
-   exec(command)
+   if(!shutdown) {
+      ipc.send('sleep')
+   } else {
+      ipc.send('shutdown')
+   }
 }
 
 const startTimer = () => {

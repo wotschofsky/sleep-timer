@@ -1,7 +1,8 @@
-const { app, BrowserWindow, nativeImage, ipcMain: ipc } = require('electron'),
-      os = require('os')
+const { app, BrowserWindow, nativeImage, ipcMain: ipc } = require('electron')
+const { exec } = require('child_process')
+const os = require('os')
 
-
+const platform = os.platform()
 const icon = nativeImage.createFromPath('./build/icon.png')
 
 app.on('ready', () => {
@@ -27,6 +28,34 @@ app.on('ready', () => {
 
    ipc.on('minimize', () => window.minimize())
    ipc.on('quit', () => app.quit())
+
+   ipc.on('sleep', () => {
+      switch (platform) {
+         case 'win32':
+            exec('shutdown /h')
+            break
+         case 'darwin':
+            exec('pmset sleepnow')
+            break
+         default:
+            exec('shutdown now')
+            break
+      }
+   })
+
+   ipc.on('shutdown', () => {
+      switch (platform) {
+         case 'win32':
+            exec('shutdown /s')
+            break
+         case 'darwin':
+            exec(`osascript -e 'tell app "System Events" to shut down'`)
+            break
+         default:
+            exec('shutdown now')
+            break
+      }
+   })
 })
 
 if (os.platform() === 'darwin') {
