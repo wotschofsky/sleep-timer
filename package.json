@@ -16,9 +16,7 @@
       "build-win": "electron-builder build --win",
       "build-mac": "electron-builder build --mac"
    },
-   "dependencies": {
-      "electron-titlebar-windows": "^3.0.0"
-   },
+   "dependencies": {},
    "devDependencies": {
       "electron": "^16.0.1",
       "electron-builder": "^22.9.1",

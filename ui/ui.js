@@ -1,5 +1,4 @@
 const { ipcRenderer: ipc } = require('electron')
-const ElectronTitlebarWindows = require('electron-titlebar-windows')
 const os = require('os')
 
 const el = {
@@ -13,7 +12,7 @@ const el = {
       circle: document.querySelector('svg circle'),
       text: document.querySelector('svg text')
    },
-   titlebar: document.querySelector('.titlebar'),
+   titlebar: document.querySelector('#titlebar'),
    views: {
       setup: document.querySelector('.setup'),
       display: document.querySelector('.display')
@@ -21,13 +20,8 @@ const el = {
 }
 
 if (os.platform() !== 'darwin') {
-   const titlebar = new ElectronTitlebarWindows({
-      backgroundColor: '#242424'
-   })
-
-   titlebar.appendTo(el.titlebar)
-   titlebar.on('minimize', () => ipc.send('minimize'))
-   titlebar.on('close', () => ipc.send('quit'))
+   document.getElementById('min-button').addEventListener('click', () => ipc.send('minimize'))
+   document.getElementById('close-button').addEventListener('click', () => ipc.send('quit'))
 } else {
    el.titlebar.classList.add('darwin')
 }
