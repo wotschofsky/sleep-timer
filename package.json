@@ -14,7 +14,7 @@
       "build-scss": "node-sass ui/styles.scss --output=\"ui/\" --output-style=compressed",
       "start": "electron .",
       "build-win": "electron-builder build --win",
-      "build-mac": "electron-builder build --mac"
+      "build-mac": "electron-builder build --mac --universal"
    },
    "dependencies": {},
    "devDependencies": {
