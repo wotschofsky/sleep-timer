@@ -12,7 +12,7 @@ Technologies used:
 ## How to compile yourself
 
 1. Install dependencies using npm or yarn
-2. Run the "build-scss" script
+2. Run the "build-sass" script
 3. Run the "build" script
 
 ## Screenshots

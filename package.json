@@ -10,8 +10,7 @@
    "license": "MIT",
    "scripts": {
       "postinstall": "electron-builder install-app-deps",
-      "watch-scss": "node-sass ui/styles.scss --output=\"ui/\" --watch",
-      "build-scss": "node-sass ui/styles.scss --output=\"ui/\" --output-style=compressed",
+      "build-sass": "sass ui/styles.scss ui/styles.css --style compressed",
       "start": "electron .",
       "build-win": "electron-builder build --win",
       "build-mac": "electron-builder build --mac --universal"
@@ -20,6 +19,6 @@
    "devDependencies": {
       "electron": "^19.0.10",
       "electron-builder": "^23.1.0",
-      "node-sass": "^7.0.1"
+      "sass": "^1.54.0"
    }
 }
