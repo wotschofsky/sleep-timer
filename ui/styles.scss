@@ -1,4 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@font-face {
+   font-family: "Mulish";
+   font-style: normal;
+   font-weight: 400;
+   src: local(""), url("./fonts/mulish-v12-latin-regular.woff2") format("woff2");
+}
+
+@font-face {
+   font-family: "Mulish";
+   font-style: normal;
+   font-weight: 700;
+   src: local(""), url("./fonts/mulish-v12-latin-700.woff2") format("woff2");
+}
 
 $white: #fff;
 $background: #292929;
@@ -8,7 +20,8 @@ body {
    margin: 0;
    color: $white;
    background-color: $background;
-   font-family: 'Muli', sans-serif;
+   font-family: "Mulish", sans-serif;
+   font-display: block;
    user-select: none;
 }
 
