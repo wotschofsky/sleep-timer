@@ -2,5 +2,5 @@
 dist/
 node_modules
 start.bat
-ui/styles.css*
+**/styles.css*
 yarn-error.log

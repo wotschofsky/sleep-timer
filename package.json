@@ -10,7 +10,7 @@
    "license": "MIT",
    "scripts": {
       "postinstall": "electron-builder install-app-deps",
-      "build-sass": "sass ui/styles.scss ui/styles.css --style compressed",
+      "build-sass": "sass ui/styles/styles.scss ui/styles/styles.css --style compressed",
       "start": "electron .",
       "build-win": "electron-builder build --win",
       "build-mac": "electron-builder build --mac --universal"
