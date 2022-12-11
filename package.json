@@ -6,19 +6,15 @@
       "name": "Felix Wotschofsky",
       "url": "https://felisk.io"
    },
-   "main": "app.js",
+   "type": "module",
    "license": "MIT",
    "scripts": {
-      "postinstall": "electron-builder install-app-deps",
-      "build-sass": "sass ui/styles/styles.scss ui/styles/styles.css --style compressed",
-      "start": "electron .",
-      "build-win": "electron-builder build --win",
-      "build-mac": "electron-builder build --mac --universal"
+      "dev": "tauri dev",
+      "build-sass": "sass src/styles/styles.scss src/styles/styles.css --style compressed",
+      "tauri": "tauri"
    },
-   "dependencies": {},
    "devDependencies": {
-      "electron": "^19.0.10",
-      "electron-builder": "^23.1.0",
-      "sass": "^1.54.0"
+      "@tauri-apps/cli": "1.2.2",
+      "sass": "^1.56.2"
    }
 }

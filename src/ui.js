@@ -1,5 +1,4 @@
-const { ipcRenderer: ipc } = require('electron')
-const os = require('os')
+const { invoke } = window.__TAURI__.tauri;
 
 const el = {
    button: document.querySelector('button'),
@@ -18,14 +17,6 @@ const el = {
       display: document.querySelector('.display')
    }
 }
-
-if (os.platform() !== 'darwin') {
-   document.getElementById('min-button').addEventListener('click', () => ipc.send('minimize'))
-   document.getElementById('close-button').addEventListener('click', () => ipc.send('quit'))
-} else {
-   el.titlebar.classList.add('darwin')
-}
-
 
 const generateDisplayLabel = (secondsLeft) => {
    let hoursLeft = Math.floor(secondsLeft / (60 * 60))
@@ -80,9 +71,9 @@ const shutdownPc = () => {
 
    const shutdown = document.querySelector('.shutdownCheckbox').checked
    if(!shutdown) {
-      ipc.send('sleep')
+      invoke('sleep')
    } else {
-      ipc.send('shutdown')
+      invoke('shutdown')
    }
 }
 

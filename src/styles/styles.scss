@@ -9,10 +9,12 @@ body {
    font-family: "Mulish", sans-serif;
    font-display: block;
    user-select: none;
+   -webkit-user-select: none;
+   overflow: hidden;
 }
 
 .container {
-   padding-top: 3rem;
+   padding-top: 1.5rem;
    height: 100%;
 }
 
