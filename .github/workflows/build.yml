@@ -1,50 +1,50 @@
-name: "Build App"
+name: 'Build App'
 
 on:
-   push:
-      branches:
-         - "**"
+  push:
+    branches:
+      - '**'
 
 jobs:
-   build:
-      strategy:
-         fail-fast: false
-         matrix:
-            platform: [macos-latest, ubuntu-20.04, windows-latest]
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [macos-latest, ubuntu-20.04, windows-latest]
 
-      runs-on: ${{ matrix.platform }}
-      steps:
-         - name: Checkout Repository
-           uses: actions/checkout@v3
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-         - name: Setup Node.js
-           uses: actions/setup-node@v3
-           with:
-              node-version: 18
-              cache: yarn
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
 
-         - name: Setup Rust
-           uses: dtolnay/rust-toolchain@stable
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
 
-         - name: Install Linux Dependencies
-           if: matrix.platform == 'ubuntu-20.04'
-           run: |
-              sudo apt-get update
-              sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
+      - name: Install Linux Dependencies
+        if: matrix.platform == 'ubuntu-20.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
 
-         - name: Install Node.js Dependencies
-           run: yarn install --frozen-lockfile
+      - name: Install Node.js Dependencies
+        run: yarn install --frozen-lockfile
 
-         - name: Compile Styles
-           run: yarn build-sass
+      - name: Compile Styles
+        run: yarn build-sass
 
-         - name: Build App
-           uses: tauri-apps/tauri-action@v0
-           env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build App
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-         - name: Upload Artifacts
-           uses: actions/upload-artifact@v3
-           with:
-              name: ${{ matrix.platform }}
-              path: ./src-tauri/target/release/bundle/
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.platform }}
+          path: ./src-tauri/target/release/bundle/
