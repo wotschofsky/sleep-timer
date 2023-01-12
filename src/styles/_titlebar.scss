@@ -1,88 +1,88 @@
 // Based on https://github.com/binaryfunt/electron-seamless-titlebar-tutorial
 
 #titlebar:not(.darwin) {
-   display: block;
-   position: fixed;
-   height: 32px;
-   width: 100%;
-   background-color: $titlebar;
+  display: block;
+  position: fixed;
+  height: 32px;
+  width: 100%;
+  background-color: $titlebar;
 
-   #drag-region {
-      display: grid;
-      grid-template-columns: auto 138px;
+  #drag-region {
+    display: grid;
+    grid-template-columns: auto 138px;
+    width: 100%;
+    height: 100%;
+    -webkit-app-region: drag;
+  }
+
+  #window-controls {
+    display: grid;
+    grid-template-columns: repeat(2, 46px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    -webkit-app-region: no-drag;
+
+    .button {
+      grid-row: 1 / span 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
       height: 100%;
-      -webkit-app-region: drag;
-   }
+      user-select: none;
 
-   #window-controls {
-      display: grid;
-      grid-template-columns: repeat(2, 46px);
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-      -webkit-app-region: no-drag;
-
-      .button {
-         grid-row: 1 / span 1;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         width: 100%;
-         height: 100%;
-         user-select: none;
-
-         &:hover {
-            background: rgba(255, 255, 255, 0.1);
-         }
-
-         &:active {
-            background: rgba(255, 255, 255, 0.2);
-         }
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
       }
 
-      @media (-webkit-device-pixel-ratio: 1.5),
-         (device-pixel-ratio: 1.5),
-         (-webkit-device-pixel-ratio: 2),
-         (device-pixel-ratio: 2),
-         (-webkit-device-pixel-ratio: 3),
-         (device-pixel-ratio: 3) {
-         .icon {
-            width: 10px;
-            height: 10px;
-         }
+      &:active {
+        background: rgba(255, 255, 255, 0.2);
+      }
+    }
+
+    @media (-webkit-device-pixel-ratio: 1.5),
+      (device-pixel-ratio: 1.5),
+      (-webkit-device-pixel-ratio: 2),
+      (device-pixel-ratio: 2),
+      (-webkit-device-pixel-ratio: 3),
+      (device-pixel-ratio: 3) {
+      .icon {
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+    #min-button {
+      grid-column: 1;
+    }
+
+    #close-button {
+      grid-column: 2;
+
+      &:hover {
+        background: #e81123 !important;
       }
 
-      #min-button {
-         grid-column: 1;
+      &:active {
+        background: #f1707a !important;
       }
-
-      #close-button {
-         grid-column: 2;
-
-         &:hover {
-            background: #e81123 !important;
-         }
-
-         &:active {
-            background: #f1707a !important;
-         }
-         &:active .icon {
-            filter: invert(1);
-         }
+      &:active .icon {
+        filter: invert(1);
       }
-   }
+    }
+  }
 }
 
 #titlebar.darwin {
-   position: fixed;
-   width: 100%;
-   height: 24px;
-   background-color: $titlebar;
-   -webkit-app-region: drag;
+  position: fixed;
+  width: 100%;
+  height: 24px;
+  background-color: $titlebar;
+  -webkit-app-region: drag;
 
-   #window-controls {
-      display: none;
-   }
+  #window-controls {
+    display: none;
+  }
 }

@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Sleep Timer</title>
-      <link rel="stylesheet" href="./styles/styles.css">
-   </head>
-   <body>
-      <div class="container">
-         <div class="setup centerItems">
-            <input placeholder="hh" type="number" min="0" class="timeInput" placeholder="00"> :
-            <input placeholder="mm" type="number" min="0" class="timeInput" placeholder="00"> :
-            <input placeholder="ss" type="number" min="0" class="timeInput" placeholder="00">
-         </div>
 
-         <div class="display">
-            <div class="centerItems">
-               <svg height="200" width="200">
-                  <circle cx="100" cy="95" r="80" stroke-width="3" fill="none" transform="rotate(-90 100 95)" />
-                  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">0s</text>
-               </svg>
-            </div>
-            <div class="centerItems">
-               <label>
-                  Shutdown
-                  <input class="shutdownCheckbox" type="checkbox"/>
-               </label>
-            </div>
-         </div>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Sleep Timer</title>
+   <link rel="stylesheet" href="./styles/styles.css">
+</head>
 
+<body>
+   <div class="container">
+      <div class="setup centerItems">
+         <input placeholder="hh" type="number" min="0" class="timeInput" placeholder="00"> :
+         <input placeholder="mm" type="number" min="0" class="timeInput" placeholder="00"> :
+         <input placeholder="ss" type="number" min="0" class="timeInput" placeholder="00">
+      </div>
+
+      <div class="display">
          <div class="centerItems">
-            <button>Start</button>
+            <svg height="200" width="200">
+               <circle cx="100" cy="95" r="80" stroke-width="3" fill="none" transform="rotate(-90 100 95)" />
+               <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">0s</text>
+            </svg>
+         </div>
+         <div class="centerItems">
+            <label>
+               Shutdown
+               <input class="shutdownCheckbox" type="checkbox" />
+            </label>
          </div>
       </div>
 
-      <script src="./ui.js"></script>
-   </body>
+      <div class="centerItems">
+         <button>Start</button>
+      </div>
+   </div>
+
+   <script src="./ui.js"></script>
+</body>
+
 </html>
