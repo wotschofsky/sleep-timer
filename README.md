@@ -6,14 +6,14 @@ A tool that automatically changes your PC's power state after a set amount of ti
 
 Technologies used:
 
-* Electron
-* SCSS
+* [Tauri](https://tauri.app/)
+* [Svelte](https://svelte.dev/)
+* [SCSS](https://sass-lang.com/)
 
 ## How to compile yourself
 
-1. Install dependencies using npm or yarn
-2. Run the "build-sass" script
-3. Run the "build" script
+1. Install dependencies using yarn
+2. Run `yarn tauri build`
 
 ## Screenshots
 
