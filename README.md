@@ -1,4 +1,4 @@
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/feliskio/sleep-timer)](https://github.com/feliskio/sleep-timer/releases)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/wotschofsky/sleep-timer)](https://github.com/wotschofsky/sleep-timer/releases)
 
 # Sleep Timer
 
