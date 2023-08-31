@@ -12,8 +12,8 @@ Technologies used:
 
 ## How to compile yourself
 
-1. Install dependencies using yarn
-2. Run `yarn tauri build`
+1. Install dependencies using pnpm
+2. Run `pnpm tauri build`
 
 ## Screenshots
 
