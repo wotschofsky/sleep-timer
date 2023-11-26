@@ -31,6 +31,10 @@ jobs:
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Add Rust ARM64 built target (macOS only)
+        if: matrix.platform == 'macos-latest'
+        run: rustup target add aarch64-apple-darwin
+
       - name: Install Linux Dependencies
         if: matrix.platform == 'ubuntu-20.04'
         run: |
@@ -40,12 +44,29 @@ jobs:
       - name: Install Node.js Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build App
+      - name: Build App (macOS)
+        if: matrix.platform == 'macos-latest'
+        uses: tauri-apps/tauri-action@v0
+        with:
+          args: --target universal-apple-darwin
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build App (Others)
+        if: matrix.platform != 'macos-latest'
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload Artifacts
+      - name: Upload Artifacts (macOS)
+        if: matrix.platform == 'macos-latest'
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.platform }}
+          path: ./src-tauri/target/universal-apple-darwin/release/bundle/
+
+      - name: Upload Artifacts (Others)
+        if: matrix.platform != 'macos-latest'
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.platform }}
