@@ -3,15 +3,21 @@
 
   import TimeInput from './lib/TimeInput.svelte';
 
-  let startTimeInSeconds = 0;
+  let startTime = 0;
+  let selectedTimeInSeconds = 0;
   let remainingTimeInSeconds = 0;
   let isRunning = false;
   let shutdownMode = false;
-  let timer;
+  let timer: NodeJS.Timeout;
 
-  const generateDisplayLabel = (secondsLeft) => {
-    let hoursLeft = Math.floor(secondsLeft / (60 * 60));
+  const generateDisplayLabel = (millisecondsLeft: number) => {
+    let secondsLeft = Math.floor(millisecondsLeft / 1000);
     let minutesLeft = Math.floor(secondsLeft / 60);
+    let hoursLeft = Math.floor(minutesLeft / 60);
+
+    minutesLeft -= hoursLeft * 60;
+    secondsLeft -= minutesLeft * 60 + hoursLeft * 3600;
+
     if (hoursLeft >= 1) {
       return `${hoursLeft}h`;
     } else if (minutesLeft >= 1) {
@@ -22,17 +28,20 @@
   };
 
   const startTimer = () => {
-    if (startTimeInSeconds === 0) {
+    if (selectedTimeInSeconds === 0) {
       return;
     }
 
-    remainingTimeInSeconds = startTimeInSeconds;
+    startTime = performance.now();
+    remainingTimeInSeconds = selectedTimeInSeconds;
     isRunning = true;
 
     timer = setInterval(() => {
-      remainingTimeInSeconds -= 1;
+      let elapsedTime = performance.now() - startTime;
+      let elapsedSeconds = Math.floor(elapsedTime / 1000);
+      remainingTimeInSeconds = selectedTimeInSeconds - elapsedSeconds;
 
-      if (remainingTimeInSeconds === 0) {
+      if (remainingTimeInSeconds <= 0) {
         resetTimer();
 
         if (!shutdownMode) {
@@ -41,7 +50,7 @@
           invoke('shutdown');
         }
       }
-    }, 1000);
+    }, 250);
   };
 
   const resetTimer = () => {
@@ -52,7 +61,7 @@
 
 <div class="container">
   <TimeInput
-    on:update={(event) => (startTimeInSeconds = event.detail.timeInSeconds)}
+    on:update={(event) => (selectedTimeInSeconds = event.detail.timeInSeconds)}
   />
 
   <div class="display">
@@ -67,14 +76,16 @@
           transform="rotate(-90 100 95)"
           class:running={isRunning}
           style:transition-duration={isRunning
-            ? `${startTimeInSeconds}s`
+            ? `${selectedTimeInSeconds}s`
             : '0s'}
           style:stroke-dasharray={2 * 80 * Math.PI}
           style:stroke-dashoffset={isRunning ? 2 * 80 * Math.PI : 0}
         />
         <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
           >{generateDisplayLabel(
-            !isRunning ? startTimeInSeconds : remainingTimeInSeconds
+            isRunning
+              ? remainingTimeInSeconds * 1000
+              : selectedTimeInSeconds * 1000
           )}</text
         >
       </svg>
