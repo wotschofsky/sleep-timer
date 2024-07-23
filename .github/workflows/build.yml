@@ -33,9 +33,9 @@ jobs:
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Add Rust ARM64 built target (macOS only)
+      - name: Add Rust build targets (macOS only)
         if: matrix.platform == 'macos-latest'
-        run: rustup target add aarch64-apple-darwin
+        run: rustup target add aarch64-apple-darwin x86_64-apple-darwin
 
       - name: Install Dependencies (Ubuntu only)
         if: matrix.platform == 'ubuntu-20.04'
